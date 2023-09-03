@@ -9,6 +9,7 @@ import { FC } from "react";
 import ImageCard from "./ImageCard";
 import SearchBar from "./SearchBar";
 import Loading from "./Loading";
+import NotFound from "./NotFound";
 
 export type ShowDataActionProps = {
   queryAction: (query: string) => void;
@@ -40,8 +41,14 @@ const ShowData: FC<ShowDataActionProps> = ({
     <>
       <div>
         <SearchBar value={query} onChange={handleChange} />
-
-        <div className="flex flex-row flex-wrap gap-5 py-5 justify-center h-screen">
+        <div>
+          {Images.length === 0 && (
+            <div>
+              <NotFound />
+            </div>
+          )}
+        </div>
+        <div className="flex flex-row flex-wrap gap-5 py-5 justify-center h-screen scroll-smooth">
           {Images ? (
             Images.map((p: ImageModel) => (
               <div key={p.id}>

@@ -5,7 +5,7 @@ const ImageCard = (props: any) => {
       <div className="flex justify-center items-center">
         <figure className="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
           <img
-            className="rounded-lg"
+            className="rounded-lg w-96 h-80"
             src={props.largeImageURL}
             alt="image description"
           />
