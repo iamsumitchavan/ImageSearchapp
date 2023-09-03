@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes } from "react";
+import { FC, InputHTMLAttributes, memo } from "react";
 
 type SearchBarProps = InputHTMLAttributes<HTMLInputElement>;
 
@@ -13,7 +13,7 @@ const SearchBar: FC<SearchBarProps> = (props) => {
           placeholder="search images shows here"
         />
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center pb-3">
         <button className="bg-black text-white py-1 w-3/5 rounded-sm ">
           search
         </button>
@@ -22,4 +22,4 @@ const SearchBar: FC<SearchBarProps> = (props) => {
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);

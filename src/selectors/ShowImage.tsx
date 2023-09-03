@@ -7,3 +7,7 @@ export const ShowQuerySelector = (state: State) => {
 export const ShowImagesSelectors = (state: State) => {
   return state.Images?.Images;
 };
+
+export const ShowNotFoundSelector = (state: State) => {
+  return state.Images.imgUrl;
+};

@@ -6,11 +6,13 @@ import { produce } from "immer";
 export type state = {
   Images: ImageModel[];
   query: string;
+  imgUrl: string;
 };
 
 export const initialState: state = {
   Images: [],
   query: "",
+  imgUrl: "",
 };
 
 const ShowImages = (state = initialState, action: AnyAction) => {

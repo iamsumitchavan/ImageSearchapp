@@ -1,3 +1,4 @@
+import { memo } from "react";
 const ImageCard = (props: any) => {
   return (
     <>
@@ -10,10 +11,7 @@ const ImageCard = (props: any) => {
           />
 
           <figcaption className="absolute px-4 text-lg text-white bottom-6">
-            <p>
-              Do you want to get notified when a new component is added to
-              Flowbite?
-            </p>
+            <p>{props.tags}</p>
           </figcaption>
         </figure>
       </div>
@@ -21,4 +19,4 @@ const ImageCard = (props: any) => {
   );
 };
 
-export default ImageCard;
+export default memo(ImageCard);
