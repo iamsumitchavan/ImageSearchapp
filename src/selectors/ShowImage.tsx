@@ -1,12 +1,16 @@
 import { State } from "../Reducer/Store";
+import { createSelector } from "@reduxjs/toolkit";
 
-export const ShowQuerySelector = (state: State) => {
-  return state.Images?.query;
-};
+const ShowSelector = (state: State) => state.Images;
+export const ShowQuerySelector = createSelector(
+  ShowSelector,
+  (ShowQuery) => ShowQuery.query
+);
 
-export const ShowImagesSelectors = (state: State) => {
-  return state.Images?.Images;
-};
+export const ShowImagesSelectors = createSelector(
+  ShowSelector,
+  (ShowImages) => ShowImages.Images
+);
 
 export const ShowNotFoundSelector = (state: State) => {
   return state.Images.imgUrl;

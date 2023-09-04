@@ -1,9 +1,9 @@
-import { useEffect, useCallback } from "react";
-import { GetAllResponse } from "../Api";
-import { GetAllImages, GetQueryAction } from "../action";
+import { useCallback } from "react";
+
+import { GetQueryAction } from "../action";
 import { State } from "../Reducer/Store";
 import { ShowImagesSelectors, ShowQuerySelector } from "../selectors/ShowImage";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import ImageModel from "../models";
 import { FC } from "react";
 import ImageCard from "./ImageCard";
@@ -11,25 +11,15 @@ import SearchBar from "./SearchBar";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
 
-export type ShowDataActionProps = {
-  queryAction: (query: string) => void;
-  ImagesAction: (Images: ImageModel[]) => void;
-  query: string;
-  Images: ImageModel[];
-};
+export type ShowDataActionProps = {} & ReduxProps;
 
 const ShowData: FC<ShowDataActionProps> = ({
   queryAction,
-  ImagesAction,
+
   query,
   Images,
 }) => {
-  useEffect(() => {
-    GetAllResponse(query).then((response) => {
-      return ImagesAction(response);
-    });
-  }, [query]);
-
+  console.log("images is", Images);
   const handleChange = useCallback(
     (e: any) => {
       queryAction(e.target.value);
@@ -66,7 +56,6 @@ const ShowData: FC<ShowDataActionProps> = ({
 
 const mapDispatchToProps = {
   queryAction: GetQueryAction,
-  ImagesAction: GetAllImages,
 };
 
 const mapStateToProps = (state: State) => {
@@ -76,4 +65,7 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowData);
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type ReduxProps = ConnectedProps<typeof connector>;
+export default connector(ShowData);
